@@ -49,10 +49,7 @@ export default function TextForm(props) {
         props.showAlert("Cleared text", "success");
     }
     const handleCopyClick = () => {
-        var text = document.getElementById("textbox");
-        text.select();
         navigator.clipboard.writeText(text.value);
-        document.getSelection().removeAllRanges();
         props.showAlert("text copied to clipboard", "success");
     }
 
@@ -75,7 +72,7 @@ export default function TextForm(props) {
             <div className="container">
                 <h1>{props.heading}</h1>
                 <div className="mb-3">
-                    <textarea className="form-control" placeholder='Enter text here' value={text} onChange={handleOnChange} id="textbox" rows="8" style={{ backgroundColor: props.mode === 'light' ? 'white' : '#1b1b1bff', color: props.mode === 'light' ? 'black' : 'white' }}></textarea>
+                    <textarea className={`form-control ${props.mode === 'light' ? 'placeholder-light' : 'placeholder-dark'}`} placeholder='Enter text here' value={text} onChange={handleOnChange} id="textbox" rows="8" style={{ backgroundColor: props.mode === 'light' ? 'white' : '#1b1b1bff', color: props.mode === 'light' ? 'black' : 'white' }}></textarea>
                 </div>
                 <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleUpClick}>Convert to Uppercase</button>
                 <button disabled={text.length===0} className="btn btn-primary mx-1 my-1" onClick={handleLoClick}>Convert to Lowercase</button>
